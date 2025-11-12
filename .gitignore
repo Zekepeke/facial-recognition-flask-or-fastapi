@@ -8,7 +8,9 @@
 **/.venv/
 **/venv/
 **/env/
-server/facial-project/   # your current venv path
+
+# This specific venv
+server/facial-project/
 
 # Node
 **/node_modules/
