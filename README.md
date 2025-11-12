@@ -12,9 +12,11 @@ cd facial-recognition-flask-or-fastapi
 
 ## Backend
 
+make sure to have python 3.11 💔
+
 ```bash
 # from server directory
-python -m venv facial-project
+python3.11 -m venv facial-project
 # macOS/Linux
 source facial-project/bin/activate
 # Windows (PowerShell)

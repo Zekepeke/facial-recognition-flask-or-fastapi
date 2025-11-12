@@ -1,9 +1,9 @@
-flask
-mediapipe
-opencv-python
-numpy
-keras-facenet
-numpy
-ml_dtpyes>=0.5.0
-tensorflow-macos # For Mac users with M1/M2 chips
-#tensorflow-metal #  allows TensorFlow to use the Mac GPU 
+flask==3.1.2
+mediapipe==0.10.21
+opencv-python==4.10.0.84  # compatible with numpy<2
+keras-facenet==0.3.2
+ml-dtypes>=0.5.0
+numpy>=1.23.0,<2  # Explicitly pin numpy<2 for compatibility
+tensorflow
+# Optional GPU acceleration on Apple Silicon:
+# tensorflow-metal==1.1.*
