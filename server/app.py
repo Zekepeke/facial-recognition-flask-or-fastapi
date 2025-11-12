@@ -28,6 +28,7 @@ def cosine_sim(a: np.ndarray, b: np.ndarray) -> float:
     b = b / (np.linalg.norm(b) + 1e-9)
     return float(np.dot(a, b))
 
+# face preprocessing function using MediaPipe
 def preprocess_face_from_bytes(img_bytes):
     """Decode -> detect face -> crop -> resize to 160x160 RGB -> return np.uint8 image."""
     nparr = np.frombuffer(img_bytes, np.uint8)
@@ -36,7 +37,7 @@ def preprocess_face_from_bytes(img_bytes):
         raise ValueError("Could not decode image")
     rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
 
-    # Detect with MediaPipe
+    # detect with MediaPipe
     with mp_face.FaceDetection(model_selection=1, min_detection_confidence=0.5) as fd:
         result = fd.process(rgb)
     if not result.detections:
@@ -63,9 +64,11 @@ def preprocess_face_from_bytes(img_bytes):
     face = cv2.resize(face, (160, 160), interpolation=cv2.INTER_AREA)
     return face  # RGB uint8
 
+# the facenet embedding function
 def embed_face(face_rgb_160):
     """Return a 512-D FaceNet embedding as np.ndarray (float32)."""
-    # keras-facenet handles prewhiten internally; pass list of faces
+    # keras-facenet handles prewhiten internally
+    # pass list of faces
     emb = embedder.embeddings([face_rgb_160])[0].astype("float32")
     return emb
 
@@ -95,7 +98,8 @@ def identify():
     """
     if "file" not in request.files:
         return jsonify({"ok": False, "error": "missing file"}), 400
-    threshold = float(request.form.get("threshold", 0.65))  # cosine similarity
+    # cosine similarity
+    threshold = float(request.form.get("threshold", 0.65)) # default 0.65
     img_bytes = request.files["file"].read()
 
     try:
@@ -110,7 +114,8 @@ def identify():
 
     best_id, best_sim = None, -1.0
     for person_id, emb_list in db.items():
-        # Compare against all of that person's samples; take MAX similarity
+        # compare against all of that person's samples 
+        # take MAX similarity
         sims = [cosine_sim(probe, np.array(e, dtype="float32")) for e in emb_list]
         person_sim = max(sims) if sims else -1.0
         if person_sim > best_sim:
