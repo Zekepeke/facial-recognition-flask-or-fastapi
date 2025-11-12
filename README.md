@@ -52,11 +52,3 @@ Run:
 npm run dev
 # usually serves at http://localhost:5173
 ```
-
-The frontend captures webcam frames, posts them to the backend for:
-	•	POST /enroll — enroll a person from an image (multipart/form-data: person_id, file)
-	•	POST /recognize — recognize a person from an image (multipart/form-data: file, optional threshold)
-	•	GET /people — list enrolled people
-	•	GET /health — health check
-
-That’s all that’s needed to bring up the demo.
