@@ -33,6 +33,19 @@ export FLASK_APP=app.py FLASK_ENV=development && flask run --port 8000
 python app.py
 ```
 
+## Trying out the Backend
+
+In a separate do this and make sure to have images(try obama if you want)
+```bash
+curl -F "file=@images/obama.jpeg" http://localhost:8000/enroll/obama
+curl -F "file=@images/obama1.jpeg" http://localhost:8000/enroll/obama
+curl -F "file=@images/obama2.jpeg" http://localhost:8000/enroll/obama
+curl -F "file=@images/obama3.jpeg" http://localhost:8000/enroll/obama
+
+
+# identify (same or different pic)
+curl -F "file=@images/obama4.jpeg" -F "threshold=0.65" http://localhost:8000/identify
+```
 ## Frontend (Vite + React)
 
 Install deps, configure the API base URL, and start the dev server.
