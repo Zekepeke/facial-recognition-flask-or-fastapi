@@ -1,4 +1,6 @@
-ace_recognition
+flask
+mediapipe
 opencv-python
-json
+numpy
+keras-facenet
 numpy
