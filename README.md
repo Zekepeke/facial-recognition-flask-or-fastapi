@@ -10,7 +10,7 @@ git clone https://github.com/Zekepeke/facial-recognition-flask-or-fastapi.git
 cd facial-recognition-flask-or-fastapi
 ```
 
-## Backend (choose one)
+## Backend
 
 ```bash
 # from server directory
