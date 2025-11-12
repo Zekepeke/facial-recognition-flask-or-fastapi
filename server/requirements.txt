@@ -4,3 +4,5 @@ opencv-python
 numpy
 keras-facenet
 numpy
+tensorflow-macos # For Mac users with M1/M2 chips
+#tensorflow-metal #  allows TensorFlow to use the Mac GPU 
